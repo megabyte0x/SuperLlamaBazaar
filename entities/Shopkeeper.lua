@@ -1,7 +1,6 @@
 local json = require('json')
 
--- ProcessId: nQTO3xDx8sjD67QAgN6AP7rf8j-aoTK17emhx-bJo1g
-
+-- Change Both
 CHAT_TARGET = 'A26mL0TpW9EwhhQM4JsarWeodv7PVzeisDcZw0Pg5Sw'
 CASHIER = 'dB7rf5Tmy0QNecKT3xl10SkLrPlKVmpXqV74bRjfTyw'
 

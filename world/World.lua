@@ -27,9 +27,8 @@ RealityParameters = {
   },
 }
 
-
--- for LLAMAJSONONCLICK.lua
 RealityEntitiesStatic = {
+  -- Change the Shopkeeper Process ID
   ['nQTO3xDx8sjD67QAgN6AP7rf8j-aoTK17emhx-bJo1g'] = {
     Position = { 6, 8 },
     Type = 'Avatar',
@@ -42,18 +41,8 @@ RealityEntitiesStatic = {
       },
     },
   },
-  ['mp1oSeaErtDKfNbAHPQW9ZPiXubCiuCiTaSpUASmTrY'] = {
-    Position = { 9, 8 },
-    Type = 'Avatar',
-    Metadata = {
-      DisplayName = 'AAShopkeeper',
-      SkinNumber = 3,
-      Interaction = {
-        Type = 'SchemaForm',
-        Id = 'BuySuperLlamas'
-      },
-    },
-  },
+
+  -- Change the Cashier Process ID
   ['dB7rf5Tmy0QNecKT3xl10SkLrPlKVmpXqV74bRjfTyw'] = {
     Position = { 5, 5 },
     Type = 'Avatar',
