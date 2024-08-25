@@ -53,4 +53,43 @@
 
 > Congratulations! You now have two world entities.
 
-### Create SuperLlamas Atomic Assets
+### Create Atomic SuperLlamas
+
+This is a like a work around way to create Atomic Assets which can show up on Bazaar. 
+
+#### Step 1: Create a Atomic Asset Spawnning Process
+1. Run AOS in the `atomic-assets` folder.
+2. Save the process Id somewhere for future reference.
+3. Set the `CASHIER` to your **Cashier Entitiy** you created, in `aa-spawn.lua`
+4. Load the `aa-spawn.lua`
+   ```lua
+   .load aa-spawn.lua
+   ```
+
+#### Step 2: Create an Atomic Asset
+1. Send a message to the above **Spawnning Process** with the *title* for the Atomic Asset.
+   ```lua
+   Send({Target = "<AA-Spawn>", Action ="CreateAA", Title = "Check"})
+   ```
+2. Save the Atomic Process Id for future reference.
+
+#### Step 3: Add SuperLLama Code in Atomic Asset
+1. Open your editor in AOS
+   ```lua
+   .editor
+   ```
+2. Create a message to the above **Spawnning Process** with the *Atomic Asset Process Id* and *Lua Code*.
+   ```lua
+   Send({
+      Target = "<AA-Spawn>",
+      Action = "AddSuperLlama", 
+      SuperLlama ="<ATOMIC_ASSET_ID>", 
+      Data=[[
+      -- Super Llama Code 
+      ... Rest of the code ...
+      -- End of the Super Llama Code
+      ]]
+   })
+   ```
+
+> Congratulations! You have created an **Atomic SuperLlama** (Entity)
