@@ -1,7 +1,7 @@
 local bint = require('.bint')(256)
 local json = require('json')
 
-if Name ~= 'Hope' then Name = 'Hope' end
+if Name ~= 'AAStandard' then Name = 'AAStandard' end
 if Ticker ~= 'ATOMIC' then Ticker = 'ATOMIC' end
 if Denomination ~= '1' then Denomination = '1' end
 if not Balances then Balances = { [Owner] = '100' } end
