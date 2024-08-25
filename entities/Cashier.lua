@@ -8,13 +8,13 @@ LLAMA_TOKEN = "pazXumQI-HPH7iFGfTC-4_7biSnqz_U67oFAGry5zUY"
 
 BUY_REQUESTS = BUY_REQUESTS or {}
 SUPER_LLAMAS = {
+    Standard = {
+        id = '',
+        price = 5
+    },
     PriceFeed = {
         id = '',
         price = 10
-    },
-    WeatherData = {
-        id = '',
-        price = 20
     }
 }
 
@@ -101,6 +101,15 @@ function lowBalance(sender, superLlama, amount)
     })
 end
 
+function transferOwnership(recipient, selectedLlama)
+    Send({
+        Target = selectedLlama,
+        Action = "Transfer",
+        Recipient = recipient,
+        Quantity = "1"
+    })
+end
+
 Handlers.add(
     'Buy SuperLlama',
     'Buy',
@@ -132,6 +141,7 @@ Handlers.add(
             for key, value in pairs(SUPER_LLAMAS) do
                 if key == selectedBot then
                     if amount >= (value.price * POINTS_TOKEN_DENOMINATION) then
+                        transferOwnership(sender, value.id)
                         sendMessageToChat("Thank you for the payment. You have successfully bought the SuperLlama.")
                         completeRequest(sender)
                     else
