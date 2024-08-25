@@ -91,5 +91,104 @@ This is a like a work around way to create Atomic Assets which can show up on Ba
       ]]
    })
    ```
-
+   > NOTE: You can use one of SuperLlama Code in `entities/superllamas`
 > Congratulations! You have created an **Atomic SuperLlama** (Entity)
+
+### Add Atomic SuperLlama in your World.
+
+This is same like adding entities plus transferring the ownership of Atomic SuperLlama to Cashier so users can buy the Atomic SuperLlama to access it in your world.
+
+#### Step 1: Edit `Shopkeeper.lua`
+1. You need to add the `enum` in schema to present users the option to buy the Atomic SuperLlama.
+   ```lua
+   schema = json.encode({
+      BuySuperLlamas = {
+         Title = "gm gm gm!!!",
+         Description =
+         "Select the Super Llama you want to buy.",
+         Schema = {
+               Tags = {
+                  type = "object",
+                  required = {
+                     "Bots",
+                     "Action"
+                  },
+                  properties = {
+                     Bots = {
+                           title = "Select SuperLlama",
+                           type = "string",
+                           -- Add the Atomic SuperLlama here like "PriceFeed"
+                           enum = { "Standard", "PriceFeed" }
+                     },
+                     Action = {
+                           type = "string",
+                           const = "BuySuperLlama"
+                     }
+                  }
+               }
+         }
+      }
+   })
+   ```
+2. Load `Shopkeeper.lua`
+   ```lua
+   .load Shopkeeper.lua
+   ```
+
+#### Step 2: Edit `Cashier.lua`
+1. You need to add your Atomic SuperLlamas in the `SUPER_LLAMAS` table so that cashier can send the price to pay and the ownership to the user.
+   ```lua
+   -- Add the SuperLlama here with thier Atomic Asset Process ID and Price user need to pay for 1 Unit
+   SUPER_LLAMAS = {
+      Standard = {
+         id = '<ATOMIC_ASSET_ID>',
+         price = 5
+      },
+      PriceFeed = {
+         id = '<ATOMIC_ASSET_ID>',
+         price = 10
+      }
+   }
+   ```
+2. Load `Cashier.lua`
+   ```lua
+   .load Cashier.lua
+   ```
+
+
+#### Step 3: Edit `World.lua`
+In this you can add your own type of Entity or can add a PriceFeed SuperLlama like I will doing here.
+1. Change the Process Id of Price SuperLlama to your `ATOMIC_ASSET_ID`
+   ```lua
+   -- Change the Price SuperLlama Process ID
+      ['<ATOMIC_ASSET_ID>'] = {
+         Position = { 9, 8 },
+         Type = 'Avatar',
+         Metadata = {
+            DisplayName = 'Price SuperLlama',
+            SkinNumber = 3,
+            Interaction = {
+            Type = 'SchemaForm',
+            Id = 'PriceFeed'
+            },
+         },
+      },
+   ```
+2. Load the World
+   ```lua
+   .load World.lua
+   ```
+
+#### Step 4: Transfer Ownership of Atomic SuperLlama
+
+We will be trasnfering ownership of the Atomic SuperLlama from your **Spawnning Process** to **Cashier Process.**
+
+We are doing this so that **Cashier** will transfer ownership to user upon successful purchase and enabling users to interact with the Atomic SuperLLama.
+
+Send `Transfer` message `From` your **Spawnning Process** to **Atomic SuperLlam Process** with **Cashier** as `Recipient`
+
+```lua 
+Send({Target = "SpawnningProcess", Action = "Transfer", Recipient = "<ATOMIC_ASSET_ID>", Quantity = "100"})
+```
+
+> Congrats now your user will only be able to interact with your **ATOMIC SuperLlama** if they have ownership of it, and to buy they will need to request **Shopkeeper** and pay **Cashier**.

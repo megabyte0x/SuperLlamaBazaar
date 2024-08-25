@@ -54,7 +54,23 @@ RealityEntitiesStatic = {
         Id = 'PayPoints'
       },
     },
-  }
+  },
+
+  -- Change the Price SuperLlama Process ID
+  ['g2fL3WWoeI1O9ztlerAlokd9_gh2DKERQ-UfNnt7eLU'] = {
+    Position = { 9, 8 },
+    Type = 'Avatar',
+    Metadata = {
+      DisplayName = 'Price SuperLlama',
+      SkinNumber = 3,
+      Interaction = {
+        Type = 'SchemaForm',
+        Id = 'PriceFeed'
+      },
+    },
+  },
+
+
 }
 
 

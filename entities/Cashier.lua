@@ -6,6 +6,7 @@ POINTS_TOKEN_DENOMINATION = 1000000000000
 
 LLAMA_TOKEN = "pazXumQI-HPH7iFGfTC-4_7biSnqz_U67oFAGry5zUY"
 
+-- Add the SuperLlama here with thier Atomic Asset Process ID and Price user need to pay for 1 Unit
 BUY_REQUESTS = BUY_REQUESTS or {}
 SUPER_LLAMAS = {
     Standard = {
@@ -13,7 +14,7 @@ SUPER_LLAMAS = {
         price = 5
     },
     PriceFeed = {
-        id = '',
+        id = 'g2fL3WWoeI1O9ztlerAlokd9_gh2DKERQ-UfNnt7eLU',
         price = 10
     }
 }

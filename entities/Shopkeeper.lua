@@ -20,7 +20,7 @@ schema = json.encode({
                     Bots = {
                         title = "Select SuperLlama",
                         type = "string",
-                        enum = { "Standard", "PriceFeed", "WeatherData" }
+                        enum = { "Standard", "PriceFeed" }
                     },
                     Action = {
                         type = "string",
