@@ -3,8 +3,10 @@ local json = require('json')
 -- ProcessId: 2D08rRT0bcstnBZnZFZMXJbYB7Bgm_8n_JtZ6jos5d0
 
 CHAT_TARGET = 'A26mL0TpW9EwhhQM4JsarWeodv7PVzeisDcZw0Pg5Sw'
+-- Change the Music Allowance Process Id
 MUSIC_ALLOWANCE = 'soTvSG4rCfZIUq5G43REP0CaGebjbiaRB7Dv2wrX5dY'
 
+-- Change or add the Music Ids and Titles
 MUSIC = {
     Skyfall = {
         id = 'bsC6CNeAKTqllbDW1gL3P2u7ooOvSsTyHmlwq7Oc7y0'

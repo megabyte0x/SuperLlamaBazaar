@@ -60,8 +60,7 @@ This is a like a work around way to create Atomic Assets which can show up on Ba
 #### Step 1: Create a Atomic Asset Spawnning Process
 1. Run AOS in the `atomic-assets` folder.
 2. Save the process Id somewhere for future reference.
-3. Set the `CASHIER` to your **Cashier Entitiy** you created, in `aa-spawn.lua`
-4. Load the `aa-spawn.lua`
+3. Load the `aa-spawn.lua`
    ```lua
    .load aa-spawn.lua
    ```
@@ -188,7 +187,135 @@ We are doing this so that **Cashier** will transfer ownership to user upon succe
 Send `Transfer` message `From` your **Spawnning Process** to **Atomic SuperLlam Process** with **Cashier** as `Recipient`
 
 ```lua 
-Send({Target = "SpawnningProcess", Action = "Transfer", Recipient = "<ATOMIC_ASSET_ID>", Quantity = "100"})
+Send({Target = "<AA-Spawn-ProcessID>", Action = "TransferOwnership", Child = "<ATOMIC_ASSET_ID>", Recipient = "<CASHIER_PROCESS_ID>"})
 ```
 
 > Congrats now your user will only be able to interact with your **ATOMIC SuperLlama** if they have ownership of it, and to buy they will need to request **Shopkeeper** and pay **Cashier**.
+
+### Customise Background Music in your World
+In this world, you can found a custom music already set. Also, you can provide an option to users to set **Custom BGM.**
+
+#### Step 1: Add parameters to your `World.lua`
+```lua
+RealityParameters = {
+  ...
+  ['Audio-0'] = {
+    Bgm = {
+      Type = 'Fixed',
+      Format = 'WEBM',
+      -- Set your custom music Arweave TxId
+      TxId = 'bsC6CNeAKTqllbDW1gL3P2u7ooOvSsTyHmlwq7Oc7y0',
+    }
+  }
+}
+```
+
+#### Step 2: Add a Handler to change Tx Id
+```lua
+Handlers.add(
+  'Reality.UpdateParameters',
+  'UpdateAudio',
+  function(msg)
+    local audioId = msg.AudioId
+
+    RealityParameters['Audio-0'].Bgm.TxId = audioId
+
+    print('Updated audio to ' .. audioId)
+  end
+)
+```
+
+#### Step 3: Spawn a new process for Music Allowance Atomic Asset.
+The holders of this **Music Allowance** Atomic Asset will be able to change the BGM of the world.
+
+1. Send a message to the above **Spawnning Process** with the *title* for the Atomic Asset.
+   ```lua
+   Send({Target = "<AA-Spawn-ProcessID>", Action ="CreateAA", Title = "Music Allowance"})
+   ```
+2. Save the Process ID for future reference.
+
+#### Step 4: Create Music Allowance Registry
+This entity will transfer Music Allowance Atomic Asset to the user in exchange of $PNTS tokens.
+
+1. Run AOS in `entities`
+2. Save the Process Id for future reference.
+3. Change the process of Music Allowance Atomic Asset
+   ```lua
+   -- Change the Music Allowance Process Id
+   MUSIC_ALLOWANCE = "soTvSG4rCfZIUq5G43REP0CaGebjbiaRB7Dv2wrX5dY"
+   ```
+5. Load the `MusicAllowanceRegistry.lua`
+   ```lua
+   .load MusicAllowanceRegistry.lua
+   ```
+
+#### Step 5: Create DJ (Entity to change BGM)
+This entity will change the World's BGM on user's request who **holds Music Allowance Atomic Asset**.
+
+1. Run AOS in `entities`
+2. Save the Process Id for future reference.
+3. Change the process of Music Allowance Atomic Asset
+   ```lua
+   -- Change the Music Allowance Process Id
+   MUSIC_ALLOWANCE = "soTvSG4rCfZIUq5G43REP0CaGebjbiaRB7Dv2wrX5dY"
+   ```
+4. Change or Add the Music Ids and Titles
+   ```lua
+   -- Change or add the Music Ids and Titles
+   MUSIC = {
+      Skyfall = {
+         id = 'bsC6CNeAKTqllbDW1gL3P2u7ooOvSsTyHmlwq7Oc7y0'
+      },
+      VivaLaVida = {
+         id = 'bKCIjUaUCUjq0a0llpd5P3dbFOfNrbk2AVAg-bt4VbM'
+      },
+      Fairytale = {
+         id = '9ccU_xsAhpw4j6K26E5qneI8bi62iKVgF-sipOQY6ME'
+      },
+      FeelingGood = {
+         id = 'Z2EGtSXorgDB-R7K0MEp3SSGKkGSZZUJq1ITSjuYHZc'
+      },
+   }
+   ```
+5. Add titles in `enum` in `serveSchema` function.
+   ```lua
+   Schema = {
+      Tags = {
+         type = "object",
+         required = {
+            "Recipient",
+            "Action",
+            "Music"
+         },
+         properties = {
+            Recipient = {
+               type = "string",
+               const = ao.id
+            },
+            Action = {
+               type = "string",
+               const = "SetMusic"
+            },
+            Music = {
+               type = "string",
+               title = "Select Music",
+               -- Add titles here.
+               enum = {
+                     "Skyfall", "VivaLaVida", "Fairytale", "FeelingGood" 
+               }
+            }
+         }
+      }
+   }
+   ```
+
+
+#### Step 6: Transfer ownership of **Music Allowance** Atomic Asset
+We need to transfer the ownership of Music Allowance Atomic Asset we spawnned in [Step 3](#step-3-spawn-a-new-process-for-music-allowance-atomic-asset) from **Spawnning Process** to **Music Allowance Registry** we created in [Step 4](#step-4-create-music-allowance-registry), so that Registry can sell the ownership to users giving them access to DJ we created in [Step 5](#step-5-create-dj-entity-to-change-bgm).
+
+```lua
+Send({Target = "<AA-Spawn-ProcessID>", Action = "TransferOwnership", Child = "<MUSIC_ALLOWANCE_ID>", Recipient = "<MUSIC_ALLOWANCE_REGISTRY_ID>"})
+```
+
+> Congratulations! Now users will be able to change the Background Music of you world after buying the Music Allowance Atomic Asset.
+

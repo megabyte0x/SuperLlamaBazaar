@@ -84,7 +84,7 @@ RealityEntitiesStatic = {
     Position = { 10, 10 },
     Type = 'Avatar',
     Metadata = {
-      DisplayName = 'Music Allowance',
+      DisplayName = 'Music Allowance Registry',
       SkinNumber = 3,
       Interaction = {
         Type = 'SchemaExternalForm',
@@ -111,5 +111,24 @@ RealityEntitiesStatic = {
 
 
 --#endregion
+
+--#write handlers
+Handlers.add(
+  'Reality.UpdateParameters',
+  'UpdateAudio',
+  function(msg)
+    local audioId = msg.AudioId
+
+    RealityParameters['Audio-0'].Bgm.TxId = audioId
+
+    print('Updated audio to ' .. audioId)
+
+    Handlers.utils.reply(json.encode({
+      Success = true,
+      Message = 'Updated audio to ' .. audioId
+    }))(msg)
+  end
+)
+
 
 return print("Loaded Reality Template")
