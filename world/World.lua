@@ -1,3 +1,5 @@
+local json = require('json')
+
 --#region Model
 
 RealityInfo = {
@@ -25,6 +27,13 @@ RealityParameters = {
       -- Offset = { -10, -10 },
     },
   },
+  ['Audio-0'] = {
+    Bgm = {
+      Type = 'Fixed',
+      Format = 'WEBM',
+      TxId = 'bsC6CNeAKTqllbDW1gL3P2u7ooOvSsTyHmlwq7Oc7y0',
+    }
+  }
 }
 
 RealityEntitiesStatic = {
@@ -70,6 +79,33 @@ RealityEntitiesStatic = {
     },
   },
 
+  -- Change the Music Allowance Process ID
+  ['r5XP4avaIC4VVtf3Hv4K9ezNyVZTy0ayhGRjlI2g660'] = {
+    Position = { 10, 10 },
+    Type = 'Avatar',
+    Metadata = {
+      DisplayName = 'Music Allowance',
+      SkinNumber = 3,
+      Interaction = {
+        Type = 'SchemaExternalForm',
+        Id = 'BuyMusicAllowance'
+      },
+    },
+  },
+
+  -- Change the DJ Process ID
+  ['2D08rRT0bcstnBZnZFZMXJbYB7Bgm_8n_JtZ6jos5d0'] = {
+    Position = { 10, 12 },
+    Type = 'Avatar',
+    Metadata = {
+      DisplayName = 'DJ',
+      SkinNumber = 3,
+      Interaction = {
+        Type = 'SchemaForm',
+        Id = 'SetMusic'
+      },
+    },
+  },
 
 }
 
