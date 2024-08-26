@@ -3,10 +3,11 @@ local json = require('json')
 -- ProcessId: 2D08rRT0bcstnBZnZFZMXJbYB7Bgm_8n_JtZ6jos5d0
 
 CHAT_TARGET = 'A26mL0TpW9EwhhQM4JsarWeodv7PVzeisDcZw0Pg5Sw'
--- Change the Music Allowance Process Id
 MUSIC_ALLOWANCE = 'soTvSG4rCfZIUq5G43REP0CaGebjbiaRB7Dv2wrX5dY'
+POINTS_TOKEN = "Fb4oxhQ_KSDrSHfRsTwXOYUiCOC83qYZdaw8ubaIAG8"
+POINTS_TOKEN_DENOMINATION = 1000000000000
+REQUIRED_AMOUNT = 10
 
--- Change or add the Music Ids and Titles
 MUSIC = {
     Skyfall = {
         id = 'bsC6CNeAKTqllbDW1gL3P2u7ooOvSsTyHmlwq7Oc7y0'
@@ -24,6 +25,13 @@ MUSIC = {
 
 function validateMusicAllowance(sender)
     if sender == MUSIC_ALLOWANCE then
+        return true
+    end
+    return false
+end
+
+function validatePointsToken(token)
+    if token == POINTS_TOKEN then
         return true
     end
     return false
@@ -56,32 +64,40 @@ function lowBalance(sender)
 end
 
 function serveSchema(sender)
+    local finalAmount = tostring(REQUIRED_AMOUNT * POINTS_TOKEN_DENOMINATION)
     Send({
         Target = sender,
-        Tags = { Type = 'Schema' },
+        Tags = { Type = 'SchemaExternal' },
         Data = json.encode({
             SetMusic = {
                 Recipient = ao.id,
+                Target = POINTS_TOKEN,
+                Quantity = finalAmount,
                 Title = "Set BIG TABLE Music",
-                Description = "Please select the BIG TABLE Music.",
+                Description = "Please select the BIG TABLE Music and pay 10 $PNTS",
                 Schema = {
                     Tags = {
                         type = "object",
                         required = {
                             "Recipient",
                             "Action",
-                            "Music"
+                            "X-Music",
+                            "Quantity"
                         },
                         properties = {
                             Recipient = {
                                 type = "string",
                                 const = ao.id
                             },
+                            Quantity = {
+                                type = "string",
+                                const = finalAmount
+                            },
                             Action = {
                                 type = "string",
-                                const = "SetMusic"
+                                const = "Transfer"
                             },
-                            Music = {
+                            ["X-Music"] = {
                                 type = "string",
                                 title = "Select Music",
                                 enum = { "Skyfall", "VivaLaVida", "Fairytale", "FeelingGood" }
@@ -96,7 +112,7 @@ end
 
 Handlers.add(
     'Schema',
-    Handlers.utils.hasMatchingTag('Action', 'Schema'),
+    Handlers.utils.hasMatchingTag('Action', 'SchemaExternal'),
     function(msg)
         local sender = msg.From
         local res = Send({
@@ -118,10 +134,17 @@ Handlers.add(
 
 
 Handlers.add(
-    'SetMusic',
-    Handlers.utils.hasMatchingTag('Action', 'SetMusic'),
+    'PNTS-Credit',
+    'Credit-Notice',
     function(msg)
-        local selectedMusic = MUSIC[msg.Music]
+        if not validatePointsToken(msg.From) then
+            msg.reply({ Data = "Please don't send me fake tokens." })
+            print("Invalid token received.")
+            return
+        end
+
+        local music = msg.Tags['X-Music']
+        local selectedMusic = MUSIC[music]
         local selectedMusicId = selectedMusic.id
 
         if selectedMusic then
@@ -131,7 +154,8 @@ Handlers.add(
                 AudioId = selectedMusicId
             })
 
-            sendMessageToChat("BIG TABLE Music has been set to " .. msg.Music)
+            sendMessageToChat("Music has been set to " ..
+                music .. "! Please refresh your browser and enjoy being a part of BIG TABLE.")
         end
     end
 )

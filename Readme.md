@@ -250,7 +250,7 @@ This entity will transfer Music Allowance Atomic Asset to the user in exchange o
    ```
 
 #### Step 5: Create DJ (Entity to change BGM)
-This entity will change the World's BGM on user's request who **holds Music Allowance Atomic Asset**.
+This entity will change the World's BGM on user's request who **holds Music Allowance Atomic Asset**. Upon selecting the music user will need to pay some more $PNTS to change the music.
 
 1. Run AOS in `entities`
 2. Save the Process Id for future reference.

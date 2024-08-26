@@ -85,7 +85,7 @@ function sendMessageToChat(message)
         Target = CHAT_TARGET,
         Tags = {
             Action = 'ChatMessage',
-            ['Author-Name'] = 'Shopkeeper',
+            ['Author-Name'] = 'Price SuperLlama',
         },
         Data = message
     })
