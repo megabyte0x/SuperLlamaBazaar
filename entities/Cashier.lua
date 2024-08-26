@@ -6,7 +6,6 @@ POINTS_TOKEN_DENOMINATION = 1000000000000
 
 LLAMA_TOKEN = "pazXumQI-HPH7iFGfTC-4_7biSnqz_U67oFAGry5zUY"
 
--- Add the SuperLlama here with thier Atomic Asset Process ID and Price user need to pay for 1 Unit
 BUY_REQUESTS = BUY_REQUESTS or {}
 SUPER_LLAMAS = {
     Standard = {
@@ -39,7 +38,7 @@ function validateLlamaToken(token)
 end
 
 function completeRequest(sender)
-    BUY_REQUESTS[sender] = nil
+    BUY_REQUESTS[sender] = '0'
 end
 
 function validateTokenBalanceResponse(sender, ticker)
@@ -102,6 +101,21 @@ function lowBalance(sender, superLlama, amount)
     })
 end
 
+function noRequestExists(sender)
+    Send({
+        Target = sender,
+        Tags = { Type = 'SchemaExternal' },
+        Data = json.encode({
+            PayPoints = {
+                Target = sender,
+                Title = "Buy SuperLlamas",
+                Description = "Please visit Shopkeeper first.",
+                Schema = nil
+            }
+        })
+    })
+end
+
 function transferOwnership(recipient, selectedLlama)
     Send({
         Target = selectedLlama,
@@ -158,36 +172,29 @@ Handlers.add(
     'SchemaExternal',
     Handlers.utils.hasMatchingTag('Action', 'SchemaExternal'),
     function(msg)
-        Send({
+        local sender = msg.From
+        local res = Send({
             Target = POINTS_TOKEN,
             Tags = {
                 Action = 'Balance',
-                Recipient = msg.From,
+                Recipient = sender,
             },
-        })
-    end
-)
+        }).receive()
 
-Handlers.add(
-    'TokenBalanceResponse',
-    function(msg)
-        return validateTokenBalanceResponse(msg.From, msg.Tags.Ticker)
-    end,
-    function(msg)
-        local sender = msg.Tags.Account
-        local balance = tonumber(msg.Tags.Balance)
+        local balance = tonumber(res.Tags.Balance)
 
-        if BUY_REQUESTS[sender] then
+        if BUY_REQUESTS[sender] and BUY_REQUESTS[sender] ~= '0' then
+            print("In if condition")
             local selectedBot = BUY_REQUESTS[sender]
-            for key, value in pairs(SUPER_LLAMAS) do
-                if key == selectedBot then
-                    if (balance >= (value.price * POINTS_TOKEN_DENOMINATION)) then
-                        payPoints(sender, selectedBot, value.price)
-                    else
-                        lowBalance(sender, selectedBot, value.price)
-                    end
-                end
+            local price = SUPER_LLAMAS[selectedBot].price
+            if (balance >= (price * POINTS_TOKEN_DENOMINATION)) then
+                payPoints(sender, selectedBot, price)
+            else
+                lowBalance(sender, selectedBot, price)
             end
+        else
+            print("In else condition")
+            noRequestExists(sender)
         end
     end
 )
