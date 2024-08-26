@@ -213,68 +213,67 @@ Handlers.add('Balances', Handlers.utils.hasMatchingTag('Action', 'Balances'),
 
 ATOMIC_ASSETS = ATOMIC_ASSETS or {}
 
--- STEP 3: Change the Cashier to the process ID of the Cashier process in SuperLlama Bazaar World
-CASHIER = "dB7rf5Tmy0QNecKT3xl10SkLrPlKVmpXqV74bRjfTyw"
 
 Handlers.add(
-    "CreateAA",
-    "CreateAA",
-    function(msg)
-        local title = msg.Tags.Title
-        Spawn(ao.env.Module.Id,
-            {
-                Tags = {
-                    Authority = ao.authorities[1],
-                    ["Collection-Id"] = "xdHpifVXXzEIgaF1aKnGSNn1UQm7jjaftxh2-qsEVAg",
-                    ["Collection-Name"] = "[[AA]]",
-                    Creator = "uguMyaC1NVryTnp3QnlvojTanGSzsbKIur3YVAZ8fnE",
-                    Description = "AA Super Llamas",
-                    Title = title
-                },
+  "CreateAA",
+  "CreateAA",
+  function(msg)
+    local title = msg.Tags.Title
+    Spawn(ao.env.Module.Id,
+      {
+        Tags = {
+          Authority = ao.authorities[1],
+          ["Collection-Id"] = "xdHpifVXXzEIgaF1aKnGSNn1UQm7jjaftxh2-qsEVAg",
+          ["Collection-Name"] = "[[AA]]",
+          Creator = "uguMyaC1NVryTnp3QnlvojTanGSzsbKIur3YVAZ8fnE",
+          Description = "AA Super Llamas",
+          Title = title
+        },
 
-            }
-        )
-        local child = Receive({ Action = "Spawned" }).Process
+      }
+    )
+    local child = Receive({ Action = "Spawned" }).Process
 
-        ATOMIC_ASSETS[child] = title
+    ATOMIC_ASSETS[child] = title
 
-        print("Atomic Asset: " .. child)
+    print("Atomic Asset: " .. child)
 
-        Send({
-            Target = child,
-            Action = "Eval",
-            Data = ATOMIC_ASSET_STANDARD
-        })
-    end
+    Send({
+      Target = child,
+      Action = "Eval",
+      Data = ATOMIC_ASSET_STANDARD
+    })
+  end
 
 )
 
 Handlers.add(
-    "AddSuperLlama",
-    "AddSuperLlama",
-    function(msg)
-        local data = msg.Data;
-        local child = msg.SuperLlama
+  "AddSuperLlama",
+  "AddSuperLlama",
+  function(msg)
+    local data = msg.Data;
+    local child = msg.SuperLlama
 
-        Send({
-            Target = child,
-            Action = "Eval",
-            Data = data
-        })
-    end
+    Send({
+      Target = child,
+      Action = "Eval",
+      Data = data
+    })
+  end
 )
 
 Handlers.add(
-    "TransferOwnership",
-    "TransferOwnership",
-    function(msg)
-        local child = msg.SuperLlama
+  "TransferOwnership",
+  "TransferOwnership",
+  function(msg)
+    local child = msg.Child
+    local recipient = msg.Recipient
 
-        Send({
-            Target = child,
-            Action = "Transfer",
-            Recipient = CASHIER,
-            Quantity = "100"
-        })
-    end
+    Send({
+      Target = child,
+      Action = "Transfer",
+      Recipient = recipient,
+      Quantity = "100"
+    })
+  end
 )
