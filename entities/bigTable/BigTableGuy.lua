@@ -1,34 +1,14 @@
 local json = require('json')
 
--- ProcessId: 2D08rRT0bcstnBZnZFZMXJbYB7Bgm_8n_JtZ6jos5d0
+-- ProcessId: QI_YZ5ff5RYgzkkB9SsF76zpy3ZHYzroyAY-pdEDuTo
 
 CHAT_TARGET = 'A26mL0TpW9EwhhQM4JsarWeodv7PVzeisDcZw0Pg5Sw'
-MUSIC_ALLOWANCE = 'soTvSG4rCfZIUq5G43REP0CaGebjbiaRB7Dv2wrX5dY'
+-- Change this to the Atomic Asset used for Token Gating.
+BIG_TABLE = 'XPj6VGx6iKUSTdm9XKqp3JQ4HpjvXX7kHYW3D_PxqtU'
 POINTS_TOKEN = "Fb4oxhQ_KSDrSHfRsTwXOYUiCOC83qYZdaw8ubaIAG8"
 POINTS_TOKEN_DENOMINATION = 1000000000000
-REQUIRED_AMOUNT = 10
+REQUIRED_AMOUNT = 50
 
-MUSIC = {
-    Skyfall = {
-        id = 'bsC6CNeAKTqllbDW1gL3P2u7ooOvSsTyHmlwq7Oc7y0'
-    },
-    VivaLaVida = {
-        id = 'bKCIjUaUCUjq0a0llpd5P3dbFOfNrbk2AVAg-bt4VbM'
-    },
-    Fairytale = {
-        id = '9ccU_xsAhpw4j6K26E5qneI8bi62iKVgF-sipOQY6ME'
-    },
-    FeelingGood = {
-        id = 'Z2EGtSXorgDB-R7K0MEp3SSGKkGSZZUJq1ITSjuYHZc'
-    },
-}
-
-function validateMusicAllowance(sender)
-    if sender == MUSIC_ALLOWANCE then
-        return true
-    end
-    return false
-end
 
 function validatePointsToken(token)
     if token == POINTS_TOKEN then
@@ -37,12 +17,21 @@ function validatePointsToken(token)
     return false
 end
 
+function transferOwnership(buyer)
+    Send({
+        Target = BIG_TABLE,
+        Action = 'Transfer',
+        Recipient = buyer,
+        Quantity = '1',
+    })
+end
+
 function sendMessageToChat(message)
     Send({
         Target = CHAT_TARGET,
         Tags = {
             Action = 'ChatMessage',
-            ['Author-Name'] = 'DJ',
+            ['Author-Name'] = 'Big Table Guy',
         },
         Data = message
     })
@@ -53,10 +42,10 @@ function lowBalance(sender)
         Target = sender,
         Tags = { Type = 'SchemaExternal' },
         Data = json.encode({
-            SetMusic = {
-                Target = MUSIC_ALLOWANCE,
-                Title = "Set BIG TABLE Music",
-                Description = "You don't have allowance to set BIG TABLE Music. Buy from Music Allowance.",
+            BuySeat = {
+                Target = BIG_TABLE,
+                Title = "Buy BIG TABLE Seat.",
+                Description = "You don't have enough $PNTS to buy seat at Big Table.",
                 Schema = nil
             }
         })
@@ -69,19 +58,19 @@ function serveSchema(sender)
         Target = sender,
         Tags = { Type = 'SchemaExternal' },
         Data = json.encode({
-            SetMusic = {
+            BuySeat = {
                 Recipient = ao.id,
                 Target = POINTS_TOKEN,
                 Quantity = finalAmount,
-                Title = "Set BIG TABLE Music",
-                Description = "Please select the BIG TABLE Music and pay 10 $PNTS",
+                Title = "Buy BIG TABLE Seat.",
+                Description = "Please pay 50 $PNTS to buy seat at Big Table.",
                 Schema = {
                     Tags = {
                         type = "object",
                         required = {
                             "Recipient",
                             "Action",
-                            "X-Music",
+                            "X-Buyer",
                             "Quantity"
                         },
                         properties = {
@@ -97,10 +86,9 @@ function serveSchema(sender)
                                 type = "string",
                                 const = "Transfer"
                             },
-                            ["X-Music"] = {
+                            ["X-Buyer"] = {
                                 type = "string",
-                                title = "Select Music",
-                                enum = { "Skyfall", "VivaLaVida", "Fairytale", "FeelingGood" }
+                                const = sender
                             }
                         }
                     }
@@ -116,15 +104,16 @@ Handlers.add(
     function(msg)
         local sender = msg.From
         local res = Send({
-            Target = MUSIC_ALLOWANCE,
-            Action = 'Balance',
-            Data = json.encode({
-                Target = sender,
-            })
+            Target = POINTS_TOKEN,
+            Tags = {
+                Action = 'Balance',
+                Recipient = sender,
+            },
         }).receive()
-        local status = res.Status
 
-        if (status == "Success") then
+        local balance = tonumber(res.Tags.Balance)
+
+        if (balance >= (REQUIRED_AMOUNT * POINTS_TOKEN_DENOMINATION)) then
             serveSchema(sender)
         else
             lowBalance(sender)
@@ -143,19 +132,11 @@ Handlers.add(
             return
         end
 
-        local music = msg.Tags['X-Music']
-        local selectedMusic = MUSIC[music]
-        local selectedMusicId = selectedMusic.id
+        local buyer = msg.Tags['X-Buyer']
 
-        if selectedMusic then
-            Send({
-                Target = CHAT_TARGET,
-                Action = 'UpdateAudio',
-                AudioId = selectedMusicId
-            })
+        transferOwnership(buyer)
 
-            sendMessageToChat("Music has been set to " ..
-                music .. "! Please refresh your browser and enjoy being a part of BIG TABLE.")
-        end
+
+        sendMessageToChat("You are now the part of BIG TABLE!")
     end
 )
