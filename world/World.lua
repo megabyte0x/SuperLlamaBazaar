@@ -5,6 +5,7 @@ CASHIER = 'aBSSTYd9CppyC5Udqb8GB-z4fCNyaNfXphgKeLNMZMI'
 STANDARD_SUPERLLAMA = 'WGbbS00KcbZTLexYO40UATkfYXvAUWEfetrHzTm93cY'
 PRICE_FEED_SUPERLLAMA = '3Q28ws1uvhw8GpDOLup9aICIEc4G2BO9Un3nKiEHgzs'
 BIG_TABBLE = 'TX1wMBfIQtUm_pvlovUjeGTGXyRBUyvzloSsODKisZ4'
+GRANTER = 'FnJ0h8LwWmfOh9CN-9gJ1WrdN_FfcDUPW5mZ_TSdIQY'
 
 --#region Model
 
@@ -53,6 +54,20 @@ RealityEntitiesStatic = {
       Interaction = {
         Type = 'SchemaForm',
         Id = 'BuySuperLlamas'
+      },
+    },
+  },
+
+  -- Change the Granter Process ID
+  [GRANTER] = {
+    Position = { 3, 8 },
+    Type = 'Avatar',
+    Metadata = {
+      DisplayName = 'Points Granter',
+      SkinNumber = 3,
+      Interaction = {
+        Type = 'SchemaForm',
+        Id = 'GetPoints'
       },
     },
   },

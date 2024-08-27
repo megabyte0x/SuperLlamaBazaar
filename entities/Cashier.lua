@@ -3,6 +3,7 @@ local json = require('json')
 CHAT_TARGET = 'R4hLJ50NtQlheNFyEM6IvjwsIEi4-Ty8psSXlXfJSx0'
 POINTS_TOKEN = "Fb4oxhQ_KSDrSHfRsTwXOYUiCOC83qYZdaw8ubaIAG8"
 POINTS_TOKEN_DENOMINATION = 1000000000000
+GRANTER = 'FnJ0h8LwWmfOh9CN-9gJ1WrdN_FfcDUPW5mZ_TSdIQY'
 
 BUY_REQUESTS = BUY_REQUESTS or {}
 SUPER_LLAMAS = {
@@ -92,10 +93,15 @@ function lowBalance(sender, superLlama, amount)
             PayPoints = {
                 Target = POINTS_TOKEN,
                 Title = "Pay for " .. superLlama .. " SuperLlama",
-                Description = "You don't have " .. amount .. " $PNTS to buy the SuperLlama.",
+                Description = "You don't have " .. amount .. " $PNTS to buy the SuperLlama. Request $PNTS Granter!",
                 Schema = nil
             }
         })
+    })
+
+    Send({
+        Target = GRANTER,
+        Action = "Announce"
     })
 end
 
@@ -168,7 +174,7 @@ Handlers.add(
 
 Handlers.add(
     'SchemaExternal',
-    Handlers.utils.hasMatchingTag('Action', 'SchemaExternal'),
+    'SchemaExternal',
     function(msg)
         local sender = msg.From
         local res = Send({
