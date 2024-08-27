@@ -4,8 +4,7 @@ local json = require('json')
 
 -- ProcessId:g2fL3WWoeI1O9ztlerAlokd9_gh2DKERQ-UfNnt7eLU
 
-CHAT_TARGET = 'A26mL0TpW9EwhhQM4JsarWeodv7PVzeisDcZw0Pg5Sw'
-CASHIER = 'dB7rf5Tmy0QNecKT3xl10SkLrPlKVmpXqV74bRjfTyw'
+CHAT_TARGET = 'R4hLJ50NtQlheNFyEM6IvjwsIEi4-Ty8psSXlXfJSx0'
 
 _0RBIT = "BaMK1dfayo75s3q1ow6AO64UDpD9SEFbeE8xYrY2fyQ"
 _0RBT_POINTS_PROCESS = "BUhZLMwQ6yZHguLtJYA5lLUa9LQzLXMXRfaq9FVcPJc"

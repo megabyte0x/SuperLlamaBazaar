@@ -1,19 +1,17 @@
 local json = require('json')
 
-CHAT_TARGET = 'A26mL0TpW9EwhhQM4JsarWeodv7PVzeisDcZw0Pg5Sw'
+CHAT_TARGET = 'R4hLJ50NtQlheNFyEM6IvjwsIEi4-Ty8psSXlXfJSx0'
 POINTS_TOKEN = "Fb4oxhQ_KSDrSHfRsTwXOYUiCOC83qYZdaw8ubaIAG8"
 POINTS_TOKEN_DENOMINATION = 1000000000000
-
-LLAMA_TOKEN = "pazXumQI-HPH7iFGfTC-4_7biSnqz_U67oFAGry5zUY"
 
 BUY_REQUESTS = BUY_REQUESTS or {}
 SUPER_LLAMAS = {
     Standard = {
-        id = '',
+        id = 'WGbbS00KcbZTLexYO40UATkfYXvAUWEfetrHzTm93cY',
         price = 5
     },
     PriceFeed = {
-        id = 'g2fL3WWoeI1O9ztlerAlokd9_gh2DKERQ-UfNnt7eLU',
+        id = '3Q28ws1uvhw8GpDOLup9aICIEc4G2BO9Un3nKiEHgzs',
         price = 10
     }
 }
@@ -56,7 +54,7 @@ function payPoints(sender, superLlama, amount)
                 Quantity = finalAmount,
                 Recipient = ao.id,
                 Title = "Pay for " .. superLlama .. " SuperLlama",
-                Description = "Please pay " .. amount .. " $LLAMA to buy the SuperLlama.",
+                Description = "Please pay " .. amount .. " $PNTS to buy the SuperLlama.",
                 Schema = {
                     Tags = {
                         type = "object",
@@ -94,7 +92,7 @@ function lowBalance(sender, superLlama, amount)
             PayPoints = {
                 Target = POINTS_TOKEN,
                 Title = "Pay for " .. superLlama .. " SuperLlama",
-                Description = "You don't have " .. amount .. " $LLAMA to buy the SuperLlama.",
+                Description = "You don't have " .. amount .. " $PNTS to buy the SuperLlama.",
                 Schema = nil
             }
         })
@@ -137,7 +135,7 @@ Handlers.add(
 )
 
 Handlers.add(
-    'LLAMA Credit',
+    'PNTS Credit',
     'Credit-Notice',
     function(msg)
         local from = msg.From
@@ -160,7 +158,7 @@ Handlers.add(
                         sendMessageToChat("Thank you for the payment. You have successfully bought the SuperLlama.")
                         completeRequest(sender)
                     else
-                        sendMessageToChat("The amount you sent is not correct. Please send " .. value.price .. " $LLAMA.")
+                        sendMessageToChat("The amount you sent is not correct. Please send " .. value.price .. " $PNTS.")
                     end
                 end
             end

@@ -1,5 +1,23 @@
 # SuperLlamas Bazaar
 
+You can visit here: https://reality-viewer.arweave.net/#/R4hLJ50NtQlheNFyEM6IvjwsIEi4-Ty8psSXlXfJSx0
+
+## Process Ids
+
+- superLlamaBazaar: R4hLJ50NtQlheNFyEM6IvjwsIEi4-Ty8psSXlXfJSx0
+- bazaarCashier: aBSSTYd9CppyC5Udqb8GB-z4fCNyaNfXphgKeLNMZMI
+- bazaarShopKeeper: CRZG8-73qdn8Nhxo4tRaDu9bnc40jMQ-CL2ciR1EaLI
+- bazaarSuperLlamaSpawanning: REany43kMRpz7zZN4w2YoOqCCCXB9ZGKEjHsX9TXy30
+- standardSuperLlama: WGbbS00KcbZTLexYO40UATkfYXvAUWEfetrHzTm93cY
+- priceFeedSuperLlama: 3Q28ws1uvhw8GpDOLup9aICIEc4G2BO9Un3nKiEHgzs
+- musicAllowance: 32UGDRE6gw_GlKz-CcSfngGjppERFWs4Y2unJfDG-hI
+- musicAllowanceRegistry: uvAJIfSMKCRgQ4q5jvquxLfHlXCBuYmdDbTTf6chNW4
+- bazaarDJ: Wsdc03LL22HNYmFjuOK07GE0h9cWC6uzGhYza-7rdhk
+- bigTable: XPj6VGx6iKUSTdm9XKqp3JQ4HpjvXX7kHYW3D_PxqtU
+- bigTableGuy: K6Ibj9ELAV0DF6AH-GXTtqCpmttmiRp-hZj2R1E1xZA
+- bazaarBigTable: TX1wMBfIQtUm_pvlovUjeGTGXyRBUyvzloSsODKisZ4
+
+
 ## How to Create your OWN?
 
 ### Deploy the Reality World
@@ -63,7 +81,8 @@ This is a like a work around way to create Atomic Assets which can show up on Ba
 #### Step 1: Create a Atomic Asset Spawnning Process
 1. Run AOS in the `atomic-assets` folder.
 2. Save the process Id somewhere for future reference.
-3. Load the `aa-spawn.lua`
+3. Change the `Name` in the `ATOMIC_ASSET_STANDARD` to your SuperLlama's name.
+4. Load the `aa-spawn.lua`
    ```lua
    .load aa-spawn.lua
    ```
@@ -82,16 +101,7 @@ This is a like a work around way to create Atomic Assets which can show up on Ba
    ```
 2. Create a message to the above **Spawnning Process** with the *Atomic Asset Process Id* and *Lua Code*.
    ```lua
-   Send({
-      Target = "<AA-Spawn>",
-      Action = "AddSuperLlama", 
-      SuperLlama ="<ATOMIC_ASSET_ID>", 
-      Data=[[
-      -- Super Llama Code 
-      ... Rest of the code ...
-      -- End of the Super Llama Code
-      ]]
-   })
+   Send({Target = "<AA-SPAWNSEnd>", Action = "AddSuperLlama", Child ="<ATOMIC_ASSET_ID>", Data=[[<YOUR SUPERLLAMA CODE>]]})
    ```
    > NOTE: You can use one of SuperLlama Code in `entities/superllamas`
 > Congratulations! You have created an **Atomic SuperLlama** (Entity)
@@ -189,8 +199,8 @@ We are doing this so that **Cashier** will transfer ownership to user upon succe
 
 Send `Transfer` message `From` your **Spawnning Process** to **Atomic SuperLlam Process** with **Cashier** as `Recipient`
 
-```lua 
-Send({Target = "<AA-Spawn-ProcessID>", Action = "TransferOwnership", Child = "<ATOMIC_ASSET_ID>", Recipient = "<CASHIER_PROCESS_ID>"})
+```lua   
+Send({Target = ao.id, Action = "TransferOwnership", Child = "<ATOMIC_ASSET_ID>", Recipient = "<CASHIER_PROCESS_ID>"})
 ```
 
 > Congrats now your user will only be able to interact with your **ATOMIC SuperLlama** if they have ownership of it, and to buy they will need to request **Shopkeeper** and pay **Cashier**.
@@ -207,7 +217,7 @@ In this world, you can found a custom music already set. Also, you can provide a
          Type = 'Fixed',
          Format = 'WEBM',
          -- Set your custom music Arweave TxId
-         TxId = 'bsC6CNeAKTqllbDW1gL3P2u7ooOvSsTyHmlwq7Oc7y0',
+         TxId = 'HxfGWmXJu9WB0ICCFEtvkpbFxDiJwXWV6P9dABJiOQA',
       }
    }
    }
@@ -228,7 +238,12 @@ In this world, you can found a custom music already set. Also, you can provide a
    )
    ```
 
-#### Step 3: Create Music Allowance Atomic Asset.
+> Congrats! You will be able to change your World BGM.
+
+### Token Gating Music Change
+Provide an option to change BGM to users who are holding a particular Atomic Asset.
+
+#### Step 1: Create Music Allowance Atomic Asset.
 The holders of this **Music Allowance** Atomic Asset will be able to change the BGM of the world.
 
 1. Go to [Bazaar](https://ao-bazar.arweave.net/) 
@@ -246,7 +261,7 @@ The holders of this **Music Allowance** Atomic Asset will be able to change the 
 
 > My [Music Allowance Atomic Asset.](https://ao-bazar.arweave.net/#/asset/32UGDRE6gw_GlKz-CcSfngGjppERFWs4Y2unJfDG-hI)
 
-#### Step 4: Create Music Allowance Registry
+#### Step 2: Create Music Allowance Registry
 This entity will transfer Music Allowance Atomic Asset to the user in exchange of $PNTS tokens.
 
 1. Run AOS in `entities`
@@ -261,10 +276,10 @@ This entity will transfer Music Allowance Atomic Asset to the user in exchange o
    .load MusicAllowanceRegistry.lua
    ```
 
-#### Step 5: Create DJ (Entity to change BGM)
+#### Step 3: Create DJ (Entity to change BGM)
 This entity will change the World's BGM on user's request who **holds Music Allowance Atomic Asset**. Upon selecting the music user will need to pay some more $PNTS to change the music.
 
-1. Run AOS in `entities`
+1. Run AOS in `entities/bigTable`
 2. Save the Process Id for future reference.
 3. Change the process of Music Allowance Atomic Asset
    ```lua
@@ -320,10 +335,14 @@ This entity will change the World's BGM on user's request who **holds Music Allo
       }
    }
    ```
+6. Load `DJ.lua`
+   ```lua
+   .load DJ.lua
+   ```
 
 
-#### Step 6: Transfer ownership of **Music Allowance** Atomic Asset
-We need to transfer the ownership of Music Allowance Atomic Asset we spawnned in [Step 3](#step-3-spawn-a-new-process-for-music-allowance-atomic-asset) from **Spawnning Process** to **Music Allowance Registry** we created in [Step 4](#step-4-create-music-allowance-registry), so that Registry can sell the ownership to users giving them access to DJ we created in [Step 5](#step-5-create-dj-entity-to-change-bgm).
+#### Step 4: Transfer ownership of **Music Allowance** Atomic Asset
+We need to transfer the ownership of Music Allowance Atomic Asset we created [here](#step-1-create-music-allowance-atomic-asset) to **Music Allowance Registry** we created in [Step 4](#step-2-create-music-allowance-registry), so that Registry can sell the ownership to users giving them access to DJ we created in [Step 5](#step-3-create-dj-entity-to-change-bgm).
 
 1. Head to your Music Allowance Atomic Asset on Bazaar. 
 2. Select the **Transfer** option. 
@@ -372,17 +391,26 @@ In this world we will need to edit `Reality.lua` and `World.lua` standard contra
    -- Change this to your Atomic Asset for Token Gating.
    BIG_TABLE = 'XPj6VGx6iKUSTdm9XKqp3JQ4HpjvXX7kHYW3D_PxqtU'
    ```
-4. Edit the `BigTableWorld.lua`
+5. Edit the `BigTableWorld.lua`
    You need to change the `BIG_TABLE_GUY` to the process id of the entity you created above.
    ```lua
    -- Change this to the process id of your entity.
    BIG_TABBLE_GUY = 'QI_YZ5ff5RYgzkkB9SsF76zpy3ZHYzroyAY-pdEDuTo'
    ```
-5. Load `BigTable.lua`, `BigTableChat.lua` and `BigTableWorld.lua`
+6. Load `BigTable.lua`, `BigTableChat.lua` and `BigTableWorld.lua`
    ```bash
    .load BigTable.lua
    .load BigTableWorld.lua
    .load BigTableChat.lua
+   ```
+7. Update `CHAT_TARGET` in `entities/bigTable/BigTableGuy.lua` to the process Id we just created fro BIG_TABLE world.
+   ```lua
+   -- Change this to the Chat Target for Big Table World
+   CHAT_TARGET = 'TX1wMBfIQtUm_pvlovUjeGTGXyRBUyvzloSsODKisZ4'
+   ```
+8. Load `BigTableGuy.lua`
+   ```lua
+   .load BigTableGuy.lua
    ```
 
 So, this will create a world which will sending its `Reality.Parameters` and `Reality.EntitiesStatic` based on the condition check if the user is the owner of the Atomic Asset or not.

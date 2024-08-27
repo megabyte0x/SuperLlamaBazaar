@@ -1,8 +1,8 @@
 local json = require('json')
 
 -- Change Both
-CHAT_TARGET = 'A26mL0TpW9EwhhQM4JsarWeodv7PVzeisDcZw0Pg5Sw'
-CASHIER = 'dB7rf5Tmy0QNecKT3xl10SkLrPlKVmpXqV74bRjfTyw'
+CHAT_TARGET = 'R4hLJ50NtQlheNFyEM6IvjwsIEi4-Ty8psSXlXfJSx0'
+CASHIER = 'aBSSTYd9CppyC5Udqb8GB-z4fCNyaNfXphgKeLNMZMI'
 
 schema = json.encode({
     BuySuperLlamas = {

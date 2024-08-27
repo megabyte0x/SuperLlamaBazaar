@@ -53,7 +53,7 @@ end
 
 RealityInfo = RealityInfo or {
   Parent = nil,
-  Name = 'UnknownReality',
+  Name = 'SuperLlamasBazaar',
   Dimensions = 0,
   Spawn = {},
   ['Render-With'] = '0D-Null',

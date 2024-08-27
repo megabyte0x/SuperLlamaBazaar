@@ -2,7 +2,8 @@ local json = require('json')
 
 -- ProcessId: QI_YZ5ff5RYgzkkB9SsF76zpy3ZHYzroyAY-pdEDuTo
 
-CHAT_TARGET = 'A26mL0TpW9EwhhQM4JsarWeodv7PVzeisDcZw0Pg5Sw'
+-- Change this to the Chat Target for Big Table World
+CHAT_TARGET = 'TX1wMBfIQtUm_pvlovUjeGTGXyRBUyvzloSsODKisZ4'
 -- Change this to the Atomic Asset used for Token Gating.
 BIG_TABLE = 'XPj6VGx6iKUSTdm9XKqp3JQ4HpjvXX7kHYW3D_PxqtU'
 POINTS_TOKEN = "Fb4oxhQ_KSDrSHfRsTwXOYUiCOC83qYZdaw8ubaIAG8"
@@ -20,9 +21,9 @@ end
 function transferOwnership(buyer)
     Send({
         Target = BIG_TABLE,
-        Action = 'Transfer',
+        Action = "Transfer",
         Recipient = buyer,
-        Quantity = '1',
+        Quantity = "1"
     })
 end
 

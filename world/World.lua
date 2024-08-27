@@ -4,7 +4,7 @@ local json = require('json')
 
 RealityInfo = {
   Dimensions = 2,
-  Name = 'ExampleReality',
+  Name = 'SuperLlamasBazaar',
   ['Render-With'] = '2D-Tile-0',
 }
 
@@ -31,14 +31,14 @@ RealityParameters = {
     Bgm = {
       Type = 'Fixed',
       Format = 'WEBM',
-      TxId = 'bsC6CNeAKTqllbDW1gL3P2u7ooOvSsTyHmlwq7Oc7y0',
+      TxId = 'HxfGWmXJu9WB0ICCFEtvkpbFxDiJwXWV6P9dABJiOQA',
     }
   }
 }
 
 RealityEntitiesStatic = {
   -- Change the Shopkeeper Process ID
-  ['nQTO3xDx8sjD67QAgN6AP7rf8j-aoTK17emhx-bJo1g'] = {
+  ['CRZG8-73qdn8Nhxo4tRaDu9bnc40jMQ-CL2ciR1EaLI'] = {
     Position = { 6, 8 },
     Type = 'Avatar',
     Metadata = {
@@ -52,7 +52,7 @@ RealityEntitiesStatic = {
   },
 
   -- Change the Cashier Process ID
-  ['dB7rf5Tmy0QNecKT3xl10SkLrPlKVmpXqV74bRjfTyw'] = {
+  ['aBSSTYd9CppyC5Udqb8GB-z4fCNyaNfXphgKeLNMZMI'] = {
     Position = { 5, 5 },
     Type = 'Avatar',
     Metadata = {
@@ -65,12 +65,26 @@ RealityEntitiesStatic = {
     },
   },
 
+  -- Change the Standard SuperLlama Process ID
+  ['WGbbS00KcbZTLexYO40UATkfYXvAUWEfetrHzTm93cY'] = {
+    Position = { 10, 10 },
+    Type = 'Avatar',
+    Metadata = {
+      DisplayName = 'Standard SuperLlama',
+      SkinNumber = 3,
+      Interaction = {
+        Type = 'SchemaExternalForm',
+        Id = 'GetData'
+      },
+    },
+  },
+
   -- Change the Price SuperLlama Process ID
-  ['g2fL3WWoeI1O9ztlerAlokd9_gh2DKERQ-UfNnt7eLU'] = {
+  ['3Q28ws1uvhw8GpDOLup9aICIEc4G2BO9Un3nKiEHgzs'] = {
     Position = { 9, 8 },
     Type = 'Avatar',
     Metadata = {
-      DisplayName = 'Price SuperLlama',
+      DisplayName = 'PriceFeed SuperLlama',
       SkinNumber = 3,
       Interaction = {
         Type = 'SchemaForm',
@@ -80,7 +94,7 @@ RealityEntitiesStatic = {
   },
 
   -- Change the Big Table Process ID
-  ['TQKAOPuE5OKZUBNBBxUKqSCG6qkft45F2ju9IvZSK-Y'] = {
+  ['TX1wMBfIQtUm_pvlovUjeGTGXyRBUyvzloSsODKisZ4'] = {
     Position = { 14.6, 5.5 },
     Type = 'Unknown',
     Metadata = {

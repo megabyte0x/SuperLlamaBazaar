@@ -2,12 +2,12 @@ local json = require('json')
 
 -- ProcessId: r5XP4avaIC4VVtf3Hv4K9ezNyVZTy0ayhGRjlI2g660
 
-CHAT_TARGET = 'A26mL0TpW9EwhhQM4JsarWeodv7PVzeisDcZw0Pg5Sw'
+CHAT_TARGET = 'TX1wMBfIQtUm_pvlovUjeGTGXyRBUyvzloSsODKisZ4'
 POINTS_TOKEN = "Fb4oxhQ_KSDrSHfRsTwXOYUiCOC83qYZdaw8ubaIAG8"
 POINTS_TOKEN_DENOMINATION = 1000000000000
 REQUIRED_AMOUNT = 10
 -- Change the Music Allowance Process Id
-MUSIC_ALLOWANCE = "soTvSG4rCfZIUq5G43REP0CaGebjbiaRB7Dv2wrX5dY"
+MUSIC_ALLOWANCE = "32UGDRE6gw_GlKz-CcSfngGjppERFWs4Y2unJfDG-hI"
 
 
 function validatePointsToken(token)
@@ -94,6 +94,27 @@ function payPoints(sender)
 end
 
 Handlers.add(
+    'PNTS-Credit',
+    'Credit-Notice',
+    function(msg)
+        local sender = msg.Sender
+
+        if not validatePointsToken(msg.From) then
+            print("Invalid token received.")
+            return
+        end
+
+        Send({
+            Target = MUSIC_ALLOWANCE,
+            Action = "Transfer",
+            Recipient = sender,
+            Quantity = "1"
+        })
+        sendMessageToChat("Thank you for the payment. You have successfully bought the Music Allowance.")
+    end
+)
+
+Handlers.add(
     'SchemaExternal',
     Handlers.utils.hasMatchingTag('Action', 'SchemaExternal'),
     function(msg)
@@ -121,22 +142,5 @@ Handlers.add(
         else
             lowBalance(sender)
         end
-    end
-)
-
-Handlers.add(
-    'PNTS-Credit',
-    'Credit-Notice',
-    function(msg)
-        local sender = msg.Sender
-
-        if not validatePointsToken(msg.From) then
-            msg.reply({ Data = "Please don't send me fake tokens." })
-            print("Invalid token received.")
-            return
-        end
-
-        transferOwnership(sender)
-        sendMessageToChat("Thank you for the payment. You have successfully bought the Music Allowance.")
     end
 )

@@ -4,7 +4,7 @@ ATOMIC_ASSET_STANDARD = [[
 local bint = require('.bint')(256)
 local json = require('json')
 
-if Name ~= 'AAStandard' then Name = 'AAStandard' end
+if Name ~= '<NAME>' then Name = '<NAME>' end
 if Ticker ~= 'ATOMIC' then Ticker = 'ATOMIC' end
 if Denomination ~= '1' then Denomination = '1' end
 if not Balances then Balances = { [Owner] = '100' } end
@@ -226,10 +226,9 @@ Handlers.add(
           ["Collection-Id"] = "xdHpifVXXzEIgaF1aKnGSNn1UQm7jjaftxh2-qsEVAg",
           ["Collection-Name"] = "[[AA]]",
           Creator = "uguMyaC1NVryTnp3QnlvojTanGSzsbKIur3YVAZ8fnE",
-          Description = "AA Super Llamas",
+          Description = "Super Llamas",
           Title = title
         },
-
       }
     )
     local child = Receive({ Action = "Spawned" }).Process
@@ -252,7 +251,7 @@ Handlers.add(
   "AddSuperLlama",
   function(msg)
     local data = msg.Data;
-    local child = msg.SuperLlama
+    local child = msg.Child
 
     Send({
       Target = child,

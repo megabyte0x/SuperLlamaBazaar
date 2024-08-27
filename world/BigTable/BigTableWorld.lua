@@ -8,7 +8,7 @@ RealityInfo = {
 }
 
 -- Change this to the process id of your entity.
-BIG_TABBLE_GUY = 'QI_YZ5ff5RYgzkkB9SsF76zpy3ZHYzroyAY-pdEDuTo'
+BIG_TABBLE_GUY = 'K6Ibj9ELAV0DF6AH-GXTtqCpmttmiRp-hZj2R1E1xZA'
 
 RealityParameters = {
   ['2D-Tile-0'] = {
@@ -33,7 +33,7 @@ RealityParameters = {
     Bgm = {
       Type = 'Fixed',
       Format = 'WEBM',
-      TxId = 'bsC6CNeAKTqllbDW1gL3P2u7ooOvSsTyHmlwq7Oc7y0',
+      TxId = 'HxfGWmXJu9WB0ICCFEtvkpbFxDiJwXWV6P9dABJiOQA',
     }
   }
 }
@@ -41,7 +41,7 @@ RealityParameters = {
 
 -- for LLAMAJSONONCLICK.lua
 RealityEntitiesStatic = {
-  ['2D08rRT0bcstnBZnZFZMXJbYB7Bgm_8n_JtZ6jos5d0'] = {
+  ['Wsdc03LL22HNYmFjuOK07GE0h9cWC6uzGhYza-7rdhk'] = {
     Position = { 8, 5 },
     Type = 'Avatar',
     Metadata = {
@@ -53,11 +53,11 @@ RealityEntitiesStatic = {
       },
     },
   },
-  ['r5XP4avaIC4VVtf3Hv4K9ezNyVZTy0ayhGRjlI2g660'] = {
+  ['uvAJIfSMKCRgQ4q5jvquxLfHlXCBuYmdDbTTf6chNW4'] = {
     Position = { 10, 10 },
     Type = 'Avatar',
     Metadata = {
-      DisplayName = 'Music Allowance',
+      DisplayName = 'Music Allowance Registry',
       SkinNumber = 3,
       Interaction = {
         Type = 'SchemaExternalForm',
