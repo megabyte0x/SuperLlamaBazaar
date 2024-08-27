@@ -1,5 +1,11 @@
 local json = require('json')
 
+SHOP_KEEPER = 'CRZG8-73qdn8Nhxo4tRaDu9bnc40jMQ-CL2ciR1EaLI'
+CASHIER = 'aBSSTYd9CppyC5Udqb8GB-z4fCNyaNfXphgKeLNMZMI'
+STANDARD_SUPERLLAMA = 'WGbbS00KcbZTLexYO40UATkfYXvAUWEfetrHzTm93cY'
+PRICE_FEED_SUPERLLAMA = '3Q28ws1uvhw8GpDOLup9aICIEc4G2BO9Un3nKiEHgzs'
+BIG_TABBLE = 'TX1wMBfIQtUm_pvlovUjeGTGXyRBUyvzloSsODKisZ4'
+
 --#region Model
 
 RealityInfo = {
@@ -38,7 +44,7 @@ RealityParameters = {
 
 RealityEntitiesStatic = {
   -- Change the Shopkeeper Process ID
-  ['CRZG8-73qdn8Nhxo4tRaDu9bnc40jMQ-CL2ciR1EaLI'] = {
+  [SHOP_KEEPER] = {
     Position = { 6, 8 },
     Type = 'Avatar',
     Metadata = {
@@ -52,7 +58,7 @@ RealityEntitiesStatic = {
   },
 
   -- Change the Cashier Process ID
-  ['aBSSTYd9CppyC5Udqb8GB-z4fCNyaNfXphgKeLNMZMI'] = {
+  [CASHIER] = {
     Position = { 5, 5 },
     Type = 'Avatar',
     Metadata = {
@@ -66,7 +72,7 @@ RealityEntitiesStatic = {
   },
 
   -- Change the Standard SuperLlama Process ID
-  ['WGbbS00KcbZTLexYO40UATkfYXvAUWEfetrHzTm93cY'] = {
+  [STANDARD_SUPERLLAMA] = {
     Position = { 10, 10 },
     Type = 'Avatar',
     Metadata = {
@@ -80,7 +86,7 @@ RealityEntitiesStatic = {
   },
 
   -- Change the Price SuperLlama Process ID
-  ['3Q28ws1uvhw8GpDOLup9aICIEc4G2BO9Un3nKiEHgzs'] = {
+  [PRICE_FEED_SUPERLLAMA] = {
     Position = { 9, 8 },
     Type = 'Avatar',
     Metadata = {
@@ -94,7 +100,7 @@ RealityEntitiesStatic = {
   },
 
   -- Change the Big Table Process ID
-  ['TX1wMBfIQtUm_pvlovUjeGTGXyRBUyvzloSsODKisZ4'] = {
+  [BIG_TABBLE] = {
     Position = { 14.6, 5.5 },
     Type = 'Unknown',
     Metadata = {

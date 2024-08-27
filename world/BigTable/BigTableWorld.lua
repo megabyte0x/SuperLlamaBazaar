@@ -9,6 +9,9 @@ RealityInfo = {
 
 -- Change this to the process id of your entity.
 BIG_TABBLE_GUY = 'K6Ibj9ELAV0DF6AH-GXTtqCpmttmiRp-hZj2R1E1xZA'
+DJ = 'Wsdc03LL22HNYmFjuOK07GE0h9cWC6uzGhYza-7rdhk'
+MUSIC_ALLOWANCE_REGISTRY = 'uvAJIfSMKCRgQ4q5jvquxLfHlXCBuYmdDbTTf6chNW4'
+SUPER_LLAMA_BAZAAR = 'R4hLJ50NtQlheNFyEM6IvjwsIEi4-Ty8psSXlXfJSx0'
 
 RealityParameters = {
   ['2D-Tile-0'] = {
@@ -41,7 +44,7 @@ RealityParameters = {
 
 -- for LLAMAJSONONCLICK.lua
 RealityEntitiesStatic = {
-  ['Wsdc03LL22HNYmFjuOK07GE0h9cWC6uzGhYza-7rdhk'] = {
+  [DJ] = {
     Position = { 8, 5 },
     Type = 'Avatar',
     Metadata = {
@@ -53,7 +56,7 @@ RealityEntitiesStatic = {
       },
     },
   },
-  ['uvAJIfSMKCRgQ4q5jvquxLfHlXCBuYmdDbTTf6chNW4'] = {
+  [MUSIC_ALLOWANCE_REGISTRY] = {
     Position = { 10, 10 },
     Type = 'Avatar',
     Metadata = {
@@ -65,6 +68,18 @@ RealityEntitiesStatic = {
       },
     },
   },
+  -- Change the Big Table Process ID
+  [SUPER_LLAMA_BAZAAR] = {
+    Position = { 9.3, 12 },
+    Type = 'Unknown',
+    Metadata = {
+      DisplayName = 'SuperLlama Bazaar',
+      Interaction = {
+        Type = 'Warp',
+        Size = { 2, 2 },
+      },
+    },
+  }
 }
 
 
@@ -102,6 +117,31 @@ RealityEntitiesStatic_Outsiders = {
       },
     },
   },
+  -- Change the Big Table Process ID
+  [SUPER_LLAMA_BAZAAR] = {
+    Position = { 9.3, 12 },
+    Type = 'Unknown',
+    Metadata = {
+      DisplayName = 'SuperLlama Bazaar',
+      Interaction = {
+        Type = 'Warp',
+        Size = { 2, 2 },
+      },
+    },
+  },
+
+
+  [ao.id] = {
+    Position = { 14.6, 5.5 },
+    Type = 'Unknown',
+    Metadata = {
+      DisplayName = 'Big Table',
+      Interaction = {
+        Type = 'Warp',
+        Size = { 2, 2 },
+      },
+    },
+  }
 }
 
 --#endregion
