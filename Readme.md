@@ -2,20 +2,34 @@
 
 You can visit here: https://reality-viewer.arweave.net/#/R4hLJ50NtQlheNFyEM6IvjwsIEi4-Ty8psSXlXfJSx0
 
+## Description
+
+This is a SuperLlama Bazaar Reality World in which there are several entities and customised worlds. 
+
+- SuperLlamas: Llamas with access to Real World Data using 0rbit.
+- Atomic SuperLlamas: Every SuperLLama is an Atomic Asset and can only be accessed if the user owns it.
+- Custom Worlds: Token Gated Worlds based on specific assets users can buy.
+- Atomic Assets with Roles: Users can buy Music Allowance Atomic Asset to change the Background Music of the exclusive Big Table world.
+- Custom Music: Users can set background music for an exclusive world if they own a specific atomic asset. 
+
+
 ## Process Ids
 
-- superLlamaBazaar: R4hLJ50NtQlheNFyEM6IvjwsIEi4-Ty8psSXlXfJSx0
-- bazaarCashier: aBSSTYd9CppyC5Udqb8GB-z4fCNyaNfXphgKeLNMZMI
-- bazaarShopKeeper: CRZG8-73qdn8Nhxo4tRaDu9bnc40jMQ-CL2ciR1EaLI
-- bazaarSuperLlamaSpawanning: REany43kMRpz7zZN4w2YoOqCCCXB9ZGKEjHsX9TXy30
-- standardSuperLlama: WGbbS00KcbZTLexYO40UATkfYXvAUWEfetrHzTm93cY
-- priceFeedSuperLlama: 3Q28ws1uvhw8GpDOLup9aICIEc4G2BO9Un3nKiEHgzs
-- musicAllowance: 32UGDRE6gw_GlKz-CcSfngGjppERFWs4Y2unJfDG-hI
-- musicAllowanceRegistry: uvAJIfSMKCRgQ4q5jvquxLfHlXCBuYmdDbTTf6chNW4
-- bazaarDJ: Wsdc03LL22HNYmFjuOK07GE0h9cWC6uzGhYza-7rdhk
-- bigTable: XPj6VGx6iKUSTdm9XKqp3JQ4HpjvXX7kHYW3D_PxqtU
-- bigTableGuy: K6Ibj9ELAV0DF6AH-GXTtqCpmttmiRp-hZj2R1E1xZA
-- bazaarBigTable: fNHqW6rghEbFZcn1p7k-vB4rqaGnLsjeyjrkkKxRhLI
+
+| Process                    | Process Id                                  |
+| -------------------------- | ------------------------------------------- |
+| superLlamaBazaar           | R4hLJ50NtQlheNFyEM6IvjwsIEi4-Ty8psSXlXfJSx0 |
+| bazaarCashier              | aBSSTYd9CppyC5Udqb8GB-z4fCNyaNfXphgKeLNMZMI |
+| bazaarShopKeeper           | CRZG8-73qdn8Nhxo4tRaDu9bnc40jMQ-CL2ciR1EaLI |
+| bazaarSuperLlamaSpawanning | REany43kMRpz7zZN4w2YoOqCCCXB9ZGKEjHsX9TXy30 |
+| standardSuperLlama         | mydYOu9rRkK61bc0tU_mMlIurqoaP_erSQL-sNBdkFI |
+| priceFeedSuperLlama        | 3Q28ws1uvhw8GpDOLup9aICIEc4G2BO9Un3nKiEHgzs |
+| musicAllowance             | 32UGDRE6gw_GlKz-CcSfngGjppERFWs4Y2unJfDG-hI |
+| musicAllowanceRegistry     | uvAJIfSMKCRgQ4q5jvquxLfHlXCBuYmdDbTTf6chNW4 |
+| bazaarDJ                   | Wsdc03LL22HNYmFjuOK07GE0h9cWC6uzGhYza-7rdhk |
+| bigTable                   | XPj6VGx6iKUSTdm9XKqp3JQ4HpjvXX7kHYW3D_PxqtU |
+| bigTableGuy                | K6Ibj9ELAV0DF6AH-GXTtqCpmttmiRp-hZj2R1E1xZA |
+| bazaarBigTable             | fNHqW6rghEbFZcn1p7k-vB4rqaGnLsjeyjrkkKxRhLI |
 
 
 ## How to Create your OWN?
@@ -440,3 +454,7 @@ We need to connect the Main World to the New World so that user can travel back 
    ```
 
 > Congrats! Now your user can travel from one world to another if they hold some particular Atomic Asset.
+
+---
+---
+If you have any queries, DM me on [Twitter](https://x.com/megabyte0x) 🫡

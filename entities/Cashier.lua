@@ -8,7 +8,7 @@ GRANTER = 'FnJ0h8LwWmfOh9CN-9gJ1WrdN_FfcDUPW5mZ_TSdIQY'
 BUY_REQUESTS = BUY_REQUESTS or {}
 SUPER_LLAMAS = {
     Standard = {
-        id = 'WGbbS00KcbZTLexYO40UATkfYXvAUWEfetrHzTm93cY',
+        id = 'mydYOu9rRkK61bc0tU_mMlIurqoaP_erSQL-sNBdkFI',
         price = 5
     },
     PriceFeed = {
