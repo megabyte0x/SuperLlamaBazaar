@@ -21,13 +21,13 @@ RealityParameters = {
     Tileset = {
       Type = 'Fixed',
       Format = 'PNG',
-      TxId = 'h5Bo-Th9DWeYytRK156RctbPceREK53eFzwTiKi0pnE', -- TxId of the tileset in PNG format
+      TxId = 'qdLI84XucwyOMdEztBXaSqXAza3RKHKt4a5bHX2PR9U', -- TxId of the tileset in PNG format
     },
     -- This is a tilemap of sample small island
     Tilemap = {
       Type = 'Fixed',
       Format = 'TMJ',
-      TxId = 'koH7Xcao-lLr1aXKX4mrcovf37OWPlHW76rPQEwCMMA', -- TxId of the tilemap in TMJ format
+      TxId = 'LrVq-wpPwaaxqFfd_9uOPWHFIr4fHUAjLeG6MkhirO4', -- TxId of the tilemap in TMJ format
       -- Since we are already setting the spawn in the middle, we don't need this
       -- Offset = { -10, -10 },
     },
@@ -70,13 +70,13 @@ RealityEntitiesStatic = {
   },
   -- Change the Big Table Process ID
   [SUPER_LLAMA_BAZAAR] = {
-    Position = { 9.3, 12 },
+    Position = { 0, 9 },
     Type = 'Unknown',
     Metadata = {
       DisplayName = 'SuperLlama Bazaar',
       Interaction = {
         Type = 'Warp',
-        Size = { 2, 2 },
+        Size = { 2, 5 },
       },
     },
   }
@@ -91,13 +91,13 @@ RealityParameters_Outsiders = {
     Tileset = {
       Type = 'Fixed',
       Format = 'PNG',
-      TxId = 'h5Bo-Th9DWeYytRK156RctbPceREK53eFzwTiKi0pnE', -- TxId of the tileset in PNG format
+      TxId = 'qdLI84XucwyOMdEztBXaSqXAza3RKHKt4a5bHX2PR9U', -- TxId of the tileset in PNG format
     },
     -- This is a tilemap of sample small island
     Tilemap = {
       Type = 'Fixed',
       Format = 'TMJ',
-      TxId = 'koH7Xcao-lLr1aXKX4mrcovf37OWPlHW76rPQEwCMMA', -- TxId of the tilemap in TMJ format
+      TxId = 'l0LdYE-C4qOEC3soiLIj_NBvlVXm2b6AixV0ZzjAf6w', -- TxId of the tilemap in TMJ format
       -- Since we are already setting the spawn in the middle, we don't need this
       -- Offset = { -10, -10 },
     },
@@ -106,7 +106,7 @@ RealityParameters_Outsiders = {
 
 RealityEntitiesStatic_Outsiders = {
   [BIG_TABBLE_GUY] = {
-    Position = { 10, 10 },
+    Position = { 9.5, 9 },
     Type = 'Avatar',
     Metadata = {
       DisplayName = 'Big Table Guy',
@@ -119,26 +119,24 @@ RealityEntitiesStatic_Outsiders = {
   },
   -- Change the Big Table Process ID
   [SUPER_LLAMA_BAZAAR] = {
-    Position = { 9.3, 12 },
+    Position = { 1, 9 },
     Type = 'Unknown',
     Metadata = {
       DisplayName = 'SuperLlama Bazaar',
       Interaction = {
         Type = 'Warp',
-        Size = { 2, 2 },
+        Size = { 2, 9 },
       },
     },
   },
-
-
   [ao.id] = {
-    Position = { 14.6, 5.5 },
+    Position = { 18, 8 },
     Type = 'Unknown',
     Metadata = {
       DisplayName = 'Big Table',
       Interaction = {
         Type = 'Warp',
-        Size = { 2, 2 },
+        Size = { 2, 6 },
       },
     },
   }
