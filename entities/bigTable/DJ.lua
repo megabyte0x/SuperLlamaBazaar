@@ -6,7 +6,7 @@ local json = require('json')
 MUSIC_ALLOWANCE = '32UGDRE6gw_GlKz-CcSfngGjppERFWs4Y2unJfDG-hI'
 
 -- Change CHAT_TARGET to Another World
-CHAT_TARGET = 'TX1wMBfIQtUm_pvlovUjeGTGXyRBUyvzloSsODKisZ4'
+CHAT_TARGET = 'fNHqW6rghEbFZcn1p7k-vB4rqaGnLsjeyjrkkKxRhLI'
 
 POINTS_TOKEN = "Fb4oxhQ_KSDrSHfRsTwXOYUiCOC83qYZdaw8ubaIAG8"
 POINTS_TOKEN_DENOMINATION = 1000000000000

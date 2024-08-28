@@ -401,14 +401,10 @@ Handlers.add(
 )
 
 Handlers.add(
-  "UpdateMemebers",
-  "Cron",
-  function()
-    local res = Send({
-      Target = BIG_TABLE,
-      Action = 'Balances',
-    }).receive()
-    local balances = json.decode(res.Data)
+  "UpdateMembers",
+  "UpdateMembers",
+  function(msg)
+    local balances = json.decode(msg.Data)
     for address, balance in pairs(balances) do
       if tonumber(balance) > 0 then
         BIG_TABLE_MEMBERS[address] = true
@@ -416,7 +412,6 @@ Handlers.add(
         BIG_TABLE_MEMBERS[address] = false
       end
     end
-
     print("Updated members")
   end
 )

@@ -3,7 +3,7 @@ local json = require('json')
 -- ProcessId: QI_YZ5ff5RYgzkkB9SsF76zpy3ZHYzroyAY-pdEDuTo
 
 -- Change this to the Chat Target for Big Table World
-CHAT_TARGET = 'TX1wMBfIQtUm_pvlovUjeGTGXyRBUyvzloSsODKisZ4'
+CHAT_TARGET = 'fNHqW6rghEbFZcn1p7k-vB4rqaGnLsjeyjrkkKxRhLI'
 -- Change this to the Atomic Asset used for Token Gating.
 BIG_TABLE = 'XPj6VGx6iKUSTdm9XKqp3JQ4HpjvXX7kHYW3D_PxqtU'
 POINTS_TOKEN = "Fb4oxhQ_KSDrSHfRsTwXOYUiCOC83qYZdaw8ubaIAG8"
