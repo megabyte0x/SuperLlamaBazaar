@@ -4,7 +4,7 @@ SHOP_KEEPER = 'CRZG8-73qdn8Nhxo4tRaDu9bnc40jMQ-CL2ciR1EaLI'
 CASHIER = 'aBSSTYd9CppyC5Udqb8GB-z4fCNyaNfXphgKeLNMZMI'
 STANDARD_SUPERLLAMA = 'WGbbS00KcbZTLexYO40UATkfYXvAUWEfetrHzTm93cY'
 PRICE_FEED_SUPERLLAMA = '3Q28ws1uvhw8GpDOLup9aICIEc4G2BO9Un3nKiEHgzs'
-BIG_TABBLE = 'TX1wMBfIQtUm_pvlovUjeGTGXyRBUyvzloSsODKisZ4'
+BIG_TABBLE = 'fNHqW6rghEbFZcn1p7k-vB4rqaGnLsjeyjrkkKxRhLI'
 GRANTER = 'FnJ0h8LwWmfOh9CN-9gJ1WrdN_FfcDUPW5mZ_TSdIQY'
 
 --#region Model
@@ -18,18 +18,18 @@ RealityInfo = {
 RealityParameters = {
   ['2D-Tile-0'] = {
     Version = 0,
-    Spawn = { 5, 7 },
+    Spawn = { 4, 44.7 },
     -- This is a tileset themed to Llama Land main island
     Tileset = {
       Type = 'Fixed',
       Format = 'PNG',
-      TxId = 'h5Bo-Th9DWeYytRK156RctbPceREK53eFzwTiKi0pnE', -- TxId of the tileset in PNG format
+      TxId = 'udHA6io6aeSzGONVKR1llb1vttnVSstqV7mhuV1jDXw', -- TxId of the tileset in PNG format
     },
     -- This is a tilemap of sample small island
     Tilemap = {
       Type = 'Fixed',
       Format = 'TMJ',
-      TxId = 'koH7Xcao-lLr1aXKX4mrcovf37OWPlHW76rPQEwCMMA', -- TxId of the tilemap in TMJ format
+      TxId = 'OqcUGl4ODdvRqdtNP__JackaeKBsa1hDspdHNfJ6ySk', -- TxId of the tilemap in TMJ format
       -- Since we are already setting the spawn in the middle, we don't need this
       -- Offset = { -10, -10 },
     },
@@ -46,7 +46,7 @@ RealityParameters = {
 RealityEntitiesStatic = {
   -- Change the Shopkeeper Process ID
   [SHOP_KEEPER] = {
-    Position = { 6, 8 },
+    Position = { 68, 25 },
     Type = 'Avatar',
     Metadata = {
       DisplayName = 'Shopkeeper',
@@ -60,7 +60,7 @@ RealityEntitiesStatic = {
 
   -- Change the Granter Process ID
   [GRANTER] = {
-    Position = { 3, 8 },
+    Position = { 24, 25 },
     Type = 'Avatar',
     Metadata = {
       DisplayName = 'Points Granter',
@@ -74,7 +74,7 @@ RealityEntitiesStatic = {
 
   -- Change the Cashier Process ID
   [CASHIER] = {
-    Position = { 5, 5 },
+    Position = { 46, 71 },
     Type = 'Avatar',
     Metadata = {
       DisplayName = 'Cashier',
@@ -88,7 +88,7 @@ RealityEntitiesStatic = {
 
   -- Change the Standard SuperLlama Process ID
   [STANDARD_SUPERLLAMA] = {
-    Position = { 10, 10 },
+    Position = { 78, 71 },
     Type = 'Avatar',
     Metadata = {
       DisplayName = 'Standard SuperLlama',
@@ -102,7 +102,7 @@ RealityEntitiesStatic = {
 
   -- Change the Price SuperLlama Process ID
   [PRICE_FEED_SUPERLLAMA] = {
-    Position = { 9, 8 },
+    Position = { 19, 71 },
     Type = 'Avatar',
     Metadata = {
       DisplayName = 'PriceFeed SuperLlama',
@@ -116,18 +116,17 @@ RealityEntitiesStatic = {
 
   -- Change the Big Table Process ID
   [BIG_TABBLE] = {
-    Position = { 14.6, 5.5 },
+    Position = { 95, 46 },
     Type = 'Unknown',
     Metadata = {
       DisplayName = 'Big Table',
       Interaction = {
         Type = 'Warp',
-        Size = { 2, 2 },
+        Size = { 11, 21 },
       },
     },
   }
 }
-
 
 --#endregion
 
